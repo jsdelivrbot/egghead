@@ -1,5 +1,6 @@
 import React from 'react';
 import Wrapper from './lifecycle/AppTwo';
+import AppFour from './map/AppFour';
 
 class App extends React.Component {
   constructor() {
@@ -21,6 +22,8 @@ class App extends React.Component {
         <Button>Button Children Text</Button>
         <hr/>
         <Wrapper />
+        <hr/>
+        <AppFour />
       </div>
     );
   }
