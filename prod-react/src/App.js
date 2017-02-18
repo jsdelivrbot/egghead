@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    let handleSubmit = this.state.currentTodo ? this.handleSubmit : this.handleError;
+    const handleSubmit = this.state.currentTodo ? this.handleSubmit : this.handleError;
     return (
       <div className="App">
         <div className="App-header">
