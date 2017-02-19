@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { TodoForm, TodoList } from './components/todo';
-import { addTodo, generateId, findById, toggleTodo, updateTodo } from './lib/todoHelpers';
+import { TodoForm, TodoList, Footer } from './components/todo';
+import { addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo } from './lib/todoHelpers';
 import { pipe, partial } from './lib/utils';
 
 class App extends Component {
@@ -13,23 +13,34 @@ class App extends Component {
       {id: 3, name: 'Ship It!', isComplete: false}
     ],
     currentTodo: ''
-  }
+  };
+
+  handleRemove = (id) => {
+    const removed = removeTodo(this.state.todos, id);
+    this.setState({
+      todos: removed
+    });
+  };
 
   handleToggle = (id) => {
-    const getUpdatedTodos = pipe(findById, toggleTodo, partial(updateTodo, this.state.todos));
+    const getUpdatedTodos = pipe(
+      findById,
+      toggleTodo,
+      partial(updateTodo, this.state.todos)
+    );
     // const todo = findById(id, this.state.todos);
     // const toggled = toggleTodo(todo);
     // const updatedTodos = updateTodo(this.state.todos, toggled)
 
-    const updatedTodos = getUpdatedTodos(id, this.state.todos);
+    const updatedTodos = getUpdatedTodos(this.state.todos, id);
     this.setState({
       todos: updatedTodos
     });
-  }
+  };
 
   handleInputChange = (e) => {
     this.setState({currentTodo: e.target.value});
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -41,14 +52,14 @@ class App extends Component {
       currentTodo: '',
       errorMessage: ''
     })
-  }
+  };
 
   handleError = (e) => {
     e.preventDefault();
     this.setState({
       errorMessage: 'Please supply a todo name'
     });
-  }
+  };
 
   render() {
     const handleSubmit = this.state.currentTodo ? this.handleSubmit : this.handleError;
@@ -65,7 +76,9 @@ class App extends Component {
             handleSubmit={handleSubmit} />
           <TodoList
             todos={this.state.todos}
-            handleToggle={this.handleToggle} />
+            handleToggle={this.handleToggle}
+            handleRemove={this.handleRemove} />
+          <Footer />
         </div>
       </div>
     );

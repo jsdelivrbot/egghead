@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TodoForm = (props) => (
   <form onSubmit={props.handleSubmit}>
-    <input type="text"
+    <input type="text" style={{width: `100%`}}
       onChange={props.handleInputChange}
       value={props.currentTodo}/>
   </form>
