@@ -21,3 +21,13 @@ export const removeTodo = (list, id) => {
   const index = list.findIndex(item => item.id === id);
   return [...list.slice(0, index), ...list.slice(index + 1)];
 };
+
+export const filterTodos = (list, filter) => {
+  if (filter === '/active') {
+    return list.filter(item => !item.isComplete)
+  } else if (filter === '/completed') {
+    return list.filter(item => item.isComplete)
+  } else {
+    return list;
+  }
+};
