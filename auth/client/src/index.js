@@ -7,6 +7,9 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import Signin from './components/auth/Signin';
+import Signout from './components/auth/Signout';
+import Signup from './components/auth/Signup';
+import Feature from './components/Feature';
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -16,6 +19,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="signin" component={Signin}></Route>
+        <Route path="signout" component={Signout}></Route>
+        <Route path="signup" component={Signup}></Route>
+        <Route path="feature" component={Feature}></Route>
       </Route>
     </Router>
   </Provider>
