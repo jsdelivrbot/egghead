@@ -49,3 +49,14 @@ export function signoutUser() {
 
   return { type: UNAUTH_USER };
 }
+
+export function fetchMessage() {
+  return function(dispatch) {
+    axios.get(API_URL, {
+      headers: { authorization: localStorage.getItem('token') }
+    })
+      .then(response => {
+        console.log(response);
+      });
+  };
+}
