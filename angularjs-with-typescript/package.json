@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/angular": "^1.6.17",
     "@types/angular-mocks": "^1.5.9",
-    "@types/angular-resource": "^1.5.8"
+    "@types/angular-resource": "^1.5.8",
+    "@types/angular-route": "^1.3.3"
   }
 }

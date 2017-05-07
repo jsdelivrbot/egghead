@@ -7,15 +7,21 @@ module app.productList {
   }
 
   class ProductListCtrl implements IProductListModel {
-    title: string;
-    showImage: boolean;
-    products: app.domain.IProduct[];
+    // title: string;
+    // showImage: boolean;
+    // products: app.domain.IProduct[];
 
     static $inject = ['dataAccessService'];
-    constructor(private dataAccessService: app.common.DataAccessService) {
-      this.title = 'Product List';
-      this.showImage = false;
-      this.products = [];
+    constructor(private dataAccessService: app.common.DataAccessService,
+                public title: string = 'Product List',
+                public showImage: boolean = true,
+                public products: app.domain.IProduct[]) {
+
+    // static $inject = ['dataAccessService'];
+    // constructor(private dataAccessService: app.common.DataAccessService) {
+      // this.title = 'Product Listttt Boiiii';
+      // this.showImage = false;
+      // this.products = [];
 
       var productResource = dataAccessService.getProductResource();
       productResource.query((data: app.domain.IProduct[]) => {
